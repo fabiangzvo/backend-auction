@@ -8,7 +8,7 @@ const { config } = require('../../../config')
  * con los tokens
  */
 passport.use(new Strategy({
-    secretOrKey: config.AuthJwtSecret,
+    secretOrKey: config.authJwtSecret,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 },
     async (tokenPayLoad, cb) => {
@@ -23,7 +23,7 @@ passport.use(new Strategy({
 
             delete user.password
 
-            cb(null, { ...user, scope: tokenPayLoad.scopes })
+            cb(null, { ...user })
         } catch (e) {
             cb(e)
         }

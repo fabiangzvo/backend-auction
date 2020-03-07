@@ -3,6 +3,7 @@ const app = express();
 
 const { config } = require('./config/index');
 const authApi = require('./routes/auth.js');
+const product = require('./routes/product.js');
 
 const {
   logErrors,
@@ -17,6 +18,7 @@ app.use(express.json());
 
 // routes
 authApi(app);
+product(app);
 // Catch 404
 app.use(notFoundHandler);
 
