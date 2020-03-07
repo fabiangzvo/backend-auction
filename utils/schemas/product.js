@@ -23,7 +23,7 @@ const createProductSchema = {
 const updateProductSchema = {
   name: productNameSchema.required(),
   description: productDescriptionSchema.required(),
-  image: productImageSchema.required(),
+  image_url: productImageSchema.required(),
   price: productPriceSchema.required(),
   visible: productVisibleSchema.required(),
   auction: productAuctionSchema.required()
