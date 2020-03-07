@@ -37,7 +37,7 @@ function authApi(app) {
                         name,
                         email,
                     };
-
+                    console.log(process.env.AUTH_JWT_SECRET)
                     const token = jwt.sign(payload, config.authJwtSecret, {
                         expiresIn: '15m'
                     });

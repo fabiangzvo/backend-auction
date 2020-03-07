@@ -10,7 +10,7 @@ const config = {
   dbName: process.env.DB_NAME,
   DefaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
   DefaultUserPassword: process.env.DEFAULT_USER_PASSWORD,
-  AuthJwtSecret: process.env.AUTH_JWT_SECRET,
+  authJwtSecret: process.env.AUTH_JWT_SECRET,
   PublicApiKeyToken: process.env.PUBLIC_API_KEY_TOKEN,
   AdminApiKeyToken: process.env.ADMIN_API_KEY_TOKEN
 };
