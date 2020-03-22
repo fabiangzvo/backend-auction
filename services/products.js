@@ -6,13 +6,18 @@ class productService {
     this.mongoDB = new mongodb();
   }
 
+  async getProducts() {
+    const product = await this.mongoDB.getAll(this.collection, {});
+    return product || {};
+  }
+
   /***
    * Function to search a specific product
    * @param {ObjectId} productId id of product to search
    */
   async getProduct({ productId }) {
-    const movie = await this.mongoDB.get(this.collection, productId);
-    return movie || {};
+    const product = await this.mongoDB.get(this.collection, productId);
+    return product || {};
   }
   /**
    * Function to create a new product

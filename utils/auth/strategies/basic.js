@@ -5,9 +5,11 @@ const bcrypt = require('bcrypt')
 const UserService = require('../../../services/users')
 
 passport.use(new BasicStrategy(async (email, password, cb) => {
+
     const userService = new UserService()
     try {
         const user = await userService.getUser({ email })
+
         if (!user) {
             return cb(boom.unauthorized(), false)
         }
@@ -20,6 +22,6 @@ passport.use(new BasicStrategy(async (email, password, cb) => {
 
         return cb(null, user)
     } catch (e) {
-        cb(e)
+        return cb(e)
     }
 }))

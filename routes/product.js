@@ -27,6 +27,23 @@ function moviesApi(app) {
     passport.authenticate('jwt', { session: false }),
     async function (req, res, next) {
       cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
+
+      try {
+        const products = await productService.getProducts();
+
+        res.status(200).json({
+          data: products,
+          message: 'product listed'
+        });
+      } catch (err) {
+        next(err);
+      }
+    });
+
+  router.get('/',
+    passport.authenticate('jwt', { session: false }),
+    async function (req, res, next) {
+      cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
       const { tags } = req.query;
 
       try {

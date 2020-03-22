@@ -19,6 +19,7 @@ function authApi(app) {
     const usersService = new UsersService();
 
     router.post('/sign-in', async function (req, res, next) {
+        console.log('melo')
         passport.authenticate('basic', function (error, user) {
             try {
                 if (error || !user) {
@@ -30,19 +31,19 @@ function authApi(app) {
                         next(error);
                     }
 
-                    const { _id: id, name, email } = user;
+                    const { _id: id, name, email, isAdmin } = user;
 
                     const payload = {
                         sub: id,
                         name,
-                        email,
+                        email
                     };
-                    console.log(process.env.AUTH_JWT_SECRET)
+
                     const token = jwt.sign(payload, config.authJwtSecret, {
                         expiresIn: '15m'
                     });
 
-                    return res.status(200).json({ token, user: { id, name, email } });
+                    return res.status(200).json({ token, user: { id, name, email, isAdmin } });
                 });
             } catch (error) {
                 next(error);
